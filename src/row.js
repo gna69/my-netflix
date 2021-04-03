@@ -19,7 +19,7 @@ function Row({title, fetchUrl}) {
         <div className="row">
             <h2>{title}</h2>
 
-            <div className="row__posters">
+            <div className={styles.row__posters}>
                 {/* posters */}
 
                 {movies.map((movie, idx) => (
