@@ -4,7 +4,7 @@ import axios from "./axios";
 import {BASE_URL} from "./consts";
 import styles from './row.module.css';
 
-function Row({title, fetchUrl}) {
+function Row({title, fetchUrl, isLargeRow}) {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -13,18 +13,16 @@ function Row({title, fetchUrl}) {
         });
     }, [fetchUrl]);
 
-    console.table(movies);
-
     return (
-        <div className="row">
+        <div className={styles.row}>
             <h2>{title}</h2>
 
             <div className={styles.row__posters}>
                 {/* posters */}
 
                 {movies.map((movie, idx) => (
-                        <img className={styles.row__poster}
-                             src={`${BASE_URL}${movie.poster_path}`}
+                        <img className={`${styles.row__poster} ${isLargeRow && styles.row__posterLarge}`}
+                             src={`${BASE_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
                              alt={movie.name}
                              key={idx}/>
                     )
